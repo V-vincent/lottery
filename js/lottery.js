@@ -14,8 +14,9 @@
  * @version 1.0.0
  */
 
-;(function($){
-	$.fn.lottery = function(opts){
+;
+(function ($) {
+	$.fn.lottery = function (opts) {
 		var defaults = {
 			index: 0,
 			num: 8,
@@ -23,35 +24,35 @@
 		}
 		$.extend(defaults, opts);
 
-        var lottery,
-            flag = false,
-            luckyHtml,
-            timer = 0,
-            times = 0;
+		var lottery,
+			flag = false,
+			luckyHtml,
+			timer = 0,
+			times = 0;
 
-        function show_lottery(){
+		function show_lottery() {
 			if (opts.index > opts.num) {
 				opts.index = 1;
 				opts.cycle--;
 			}
 			$('.lottery li').css('opacity', 0.3);
-			$('.lottery'+ opts.index).css('opacity', 1);
+			$('.lottery' + opts.index).css('opacity', 1);
 
-		    times += 1;
-		    if( times < opts.cycle ){
-		    	opts.speed -= 10;
-		    } else {
-		        if (times > opts.cycle + 10 && opts.lucky == opts.index + 1) {
-		        	opts.speed += 110;
-		        } else{
-		        	opts.speed += 20;
-		        }
-		    }
-		    if (opts.speed < 40) {
-		    	opts.speed = 40;
-		    }
+			times += 1;
+			if (times < opts.cycle) {
+				opts.speed -= 10;
+			} else {
+				if (times > opts.cycle + 10 && opts.lucky == opts.index + 1) {
+					opts.speed += 110;
+				} else {
+					opts.speed += 20;
+				}
+			}
+			if (opts.speed < 40) {
+				opts.speed = 40;
+			}
 
-			if (times > opts.cycle + 10 && opts.lucky == opts.index) {  //结束抽奖
+			if (times > opts.cycle + 10 && opts.lucky == opts.index) { //结束抽奖
 				clearTimeout(timer);
 				// 重置参数
 				timer = 0;
@@ -71,9 +72,9 @@
 			opts.index++;
 		}
 
-		return this.each(function() {
+		return this.each(function () {
 			// console.log($(opts.draw))
-			$(opts.draw).click(function(event) {
+			$(opts.draw).click(function (event) {
 				if (flag) {
 					return false;
 				}
